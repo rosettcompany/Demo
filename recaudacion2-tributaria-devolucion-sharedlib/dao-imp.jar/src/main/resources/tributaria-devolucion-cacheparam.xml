@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="classpath:cacheparamconfig.xml" />
+	<bean id="sqlMapT01DAO" class="pe.gob.sunat.framework.spring.util.cache2.recauda.model.dao.ibatis.SqlMapT01DAO">
+		<property name="sqlMapClient" ref="sqlMapRecaudaParamDS"/>
+	</bean> 
+
+	<!-- ========================= PARAMETERS BEANS DEFINITIONS ======================== -->
+	
+	<bean id="paramDAO" name="paramDAO" class="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.dao.ibatis.ParamDevolucionDAO"
+		init-method="loadParamNamePairs" autowire="byName">
+		<property name="cacheProvider" ref="cacheProvider"/>
+		<property name="paramLoader" ref="sqlMapT01DAO"/>
+		<property name="paramNamePairs">	
+			<list>
+				<!--<value>828,recaudaprm828,1,notrim</value>-->
+				<value>129,recaudaprm129,1,trim</value>
+				<value>101,recaudaprm101,1,trim</value>
+				<value>123,recaudaprm123,1,trim</value>
+				<value>A88,RECAUDA_PRM_A88,1,trim</value>
+				<value>B37,RECAUDA_PRM_B37,1,trim</value>
+				<value>B38,RECAUDA_PRM_B38,1,trim</value>
+			</list>
+		</property>
+	</bean>	
+
+	<bean id="refreshPeriodParamCache" class="java.lang.Integer">
+		<constructor-arg value="43200" />   
+	</bean>	
+
+</beans>

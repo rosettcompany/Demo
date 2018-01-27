@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="vfp">
+    <typeAlias alias="tvfp" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.Vfp" />
+    <resultMap id="resultMapvfp" class="tvfp">
+        <result property="numeroRuc"        column="vfp_numruc" />
+        <result property="codigoTributario" column="vfp_codtri" />
+        <result property="fechaVigencia"    column="vfp_fecvig" />
+    </resultMap>
+    <select id="findByRucTributos" parameterClass="java.util.HashMap" resultMap="resultMapvfp" >
+        SELECT vfp_numruc,
+               vfp_codtri,
+               vfp_fecvig
+        FROM   vfp
+        WHERE  vfp_numruc = #numruc#
+        AND    vfp_codtri in  
+        <iterate property="codtri"  open="(" close=")" conjunction=",">
+        #codtri[]#
+        </iterate>
+    </select>
+</sqlMap>

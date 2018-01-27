@@ -1,0 +1,57 @@
+apply plugin: 'earApplicationConventions'
+apply plugin: 'java'
+[ compileJava, compileTestJava ]*.options*.encoding = 'UTF-8'
+
+evaluationDependsOn(':tributaria-devolucion-controller')
+evaluationDependsOn(':itdevolucion-registro')
+//evalWAR
+
+dependencies {
+  deploy project(':tributaria-devolucion-controller')
+  deploy project(path:':itdevolucion-registro',configuration:"archives")
+  deploy project(path:':itdevolucion-test',configuration:"archives")
+  //DPLWAR
+}
+
+import pe.gob.sunat.framework.build.ear.LibModule
+
+ear{
+  deploymentDescriptor {
+    webModule(project(':itdevolucion-registro').war.archiveName,'ol-ti-itdevolucion-registro')
+    webModule(project(':itdevolucion-test').war.archiveName,'ol-ti-itdevolucion-test')
+  //WEBMWAR
+    module(new LibModule(project(":tributaria-devolucion-controller").jar.archiveName), "java")
+  }
+}
+
+/* Tarea para el despliegue del EAR*/
+configurations {
+  wlc
+}
+
+dependencies {
+  wlc group: 'weblogic', name: 'wlfullclient', version: '12.1.3' 
+}
+
+task deployToWeblogic(dependsOn: [build, publishToMavenLocal]) << {
+  ant.taskdef(name: 'wldeploy', 
+    classname: 'weblogic.ant.taskdefs.management.WLDeploy',
+    classpath: configurations.wlc.asPath) 
+
+  ant.wldeploy(action:'deploy',
+    source:"${projectDir}/build/libs/${ear.archiveName}", 
+    name:"${ear.baseName}", 
+    adminurl: "t3://$wlURL", 
+    user: "$wluser",
+    password: "$wlpassword",
+    upload:"true", 
+    targets:"$wltargets",
+    verbose:'true',
+    debug:'false',
+    library:'false')
+}
+
+configure(deployToWeblogic) {   
+    group = 'WebLogic'
+    description = 'Compila el EAR y lo publica a un nodo weblogic. El nodo es configurado en settings.gradle'
+}

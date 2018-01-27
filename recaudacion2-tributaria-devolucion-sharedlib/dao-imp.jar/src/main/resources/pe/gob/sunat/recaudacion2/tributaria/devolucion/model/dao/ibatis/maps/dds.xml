@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="dds">
+    <typeAlias alias="datosSecundarios" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.DatosSecundarios" />
+    <resultMap id="resultMapDds" class="datosSecundarios">
+        <result property="tipoDocumentoIdentidad" column="dds_docide" />
+        <result property="motivoDeBaja" column="dds_motbaj" />
+    </resultMap>
+    <select id="findByPK" parameterClass="java.lang.String"  resultMap="resultMapDds" >
+    SELECT  dds_docide,
+            dds_motbaj
+      FROM dds where dds_numruc = #value#
+    </select>
+</sqlMap>

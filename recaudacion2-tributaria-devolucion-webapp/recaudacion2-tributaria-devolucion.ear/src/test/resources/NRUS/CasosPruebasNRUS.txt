@@ -1,0 +1,42 @@
+Datos de prueba:
+Caso 1)
+  RUC: 15600021530
+  USuario: CONFEDAT
+  pASS:   moddatos
+  Periodo: 201701
+  Telefono: 3444444
+  Forma de Devolucion: Cheque
+  Importe Solicitado: 500
+  Archivo de sustento (Cualquier PDF)
+
+RESULTADO ESPERADO: Registro correcto de devolucion
+Caso 2)
+  RUC: 10407836559
+  USuario: moddatos
+  pASS:   moddatos
+  Periodo: 201612
+  Telefono: 3444444
+  Forma de Devolucion: Abono en Cuenta
+  Importe Solicitado: 40000555
+  Archivo de sustento (Cualquier PDF)
+  RESULTADO ESPERADO: Mensaje de monto Máximo para OPF
+
+Caso 3)
+  RUC: 10407836559
+  Periodo: 201612
+  Telefono: 3444444
+  Forma de Devolucion: Cheque
+  Importe Solicitado: 4000
+  Archivo de sustento (Cualquier PDF)
+  RESULTADO ESPERADO: Mensaje de que no es posible el registro de cheque por no tener el monto mínimo.
+  
+Caso 4)
+  RUC: 10407836559
+  Periodo: 201612
+  Telefono: 3444444
+  Forma de Devolucion: Abono en Cuenta
+  CCI: 01800000405260092304
+  Importe Solicitado: 400
+  Archivo de sustento (Cualquier PDF)
+  RESULTADO ESPERADO: Registro correcto de devolucion
+  

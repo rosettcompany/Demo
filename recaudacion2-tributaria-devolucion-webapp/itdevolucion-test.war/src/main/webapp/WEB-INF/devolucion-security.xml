@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!--
+	 USA INTERCEPTORES PARA LA INTEGRACIÓN CON SOL
+	 El menú debe ser creado en t1506programa con tip_invoca = 3 
+	 Indicar el interceptor a usar:
+	 CLASE_INTERCEPTORA:
+			Menú SOL: pe.gob.sunat.tecnologia.menu.sso.web.controller.MenuInternetInterceptor
+	-->
+	
+	<!--##DESCOMENTAR
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/PaginaQueNecesitaAutenticacion.htm" />
+			<bean class="INDICAR_CLASE_INTERCEPTORA">
+					<property name="msgView" ref="msgViewMensajes" />
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	-->
+	<bean id="msgViewMensajes" class="org.springframework.web.servlet.ModelAndView">
+		<constructor-arg type="java.lang.String" value="PagM" /> 
+	</bean>
+
+</beans>   

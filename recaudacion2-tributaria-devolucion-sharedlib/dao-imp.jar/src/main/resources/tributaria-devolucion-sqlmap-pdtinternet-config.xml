@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" useStatementNamespaces="true" maxSessions="64" maxTransactions="8" maxRequests="128"/>
+	
+	<!-- <typeHandler callback="pe.gob.sunat.framework.spring.util.FechaTypeHandler" javaType="pe.gob.sunat.framework.spring.util.date.FechaBean" /> -->
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/t5385.xml"/>
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/t5386.xml"/>
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/t5387.xml"/>
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/t5847.xml"/>
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/t9030.xml"/>
+
+</sqlMapConfig>

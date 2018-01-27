@@ -1,0 +1,28 @@
+buildscript{
+	repositories {
+		maven {
+			url "$artifactoryUrl/plugins-release"
+		}
+	}
+	dependencies {
+		classpath(group: 'procesos.gestion.configuracion', name: 'build-gradle', version: '1.9.15')
+	}
+}
+
+apply plugin: "parentConventions"
+apply plugin: "dependenciesAndVersions"
+
+dependenciesAndVersions {
+	dependenciesBranch = 'master'
+	versionsBranch = 'master'
+}
+
+subprojects {subproject->
+	group = "procesos.recaudacion2.tributaria.devolucion.recaudacion2-tributaria-devolucion-sharedlib"
+	version = '2.0.19'
+	paseNro = 'PAS20175E210500044'
+	
+	repositories {
+		mavenLocal()
+	}
+}

@@ -1,0 +1,15 @@
+Caso de prueba 1:
+
+Caso 1)
+  Tipo Solicitud: 02 Devoluciones
+  Tributo       : Cualquiera
+  RUC           : 10005066404
+  USUARIO       : MODDATOS
+  Contraseña    : Modatos
+  Periodo       : 201613
+  
+  Resultado Esperado:
+  Registro de rentas de primera
+
+
+

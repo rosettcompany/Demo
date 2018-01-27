@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="t5847">
+    <typeAlias alias="t5847CTLDECL" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.ControlDeclaracion" />
+    <resultMap id="resultMapt5847CTLDECL" class="t5847CTLDECL">
+        <result property="numeroSecuencia" column="num_sec" />
+        <result property="numeroEjercicio" column="num_ejercicio" />
+        <result property="numeroFormulario" column="num_formul" />
+        <result property="numeroOrden" column="num_ord" />
+        <result property="ruc" column="num_ruc" />
+        <result property="indicadorEstado" column="ind_estado" />
+        <result property="numeroRevision" column="num_revision" />
+        <result property="indicadorActual" column="ind_actual" />
+        <result property="indicadorProceso" column="ind_proceso" />
+        <result property="fechaRevision" column="fec_revision" />
+        <result property="fechaCreacion" column="fec_creacion" />
+    </resultMap>
+    <select id="findByControlDeclaracion" parameterClass="t5847CTLDECL" resultMap="resultMapt5847CTLDECL" >
+        SELECT num_ejercicio,
+               num_formul,
+               num_ord,
+               num_ruc,
+               num_revision,
+               fec_revision,
+               num_sec,
+               ind_actual,
+               ind_estado,
+               ind_proceso,
+               fec_creacion
+         FROM T5847CTLDECL
+         WHERE num_formul = #numeroFormulario#
+           AND ind_estado = #indicadorEstado#
+           <isNotNull property="indicadorActual">
+           AND ind_actual = #indicadorActual#
+           </isNotNull>
+           AND num_ruc = #ruc#
+           Order by fec_revision desc
+    </select>
+</sqlMap>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="t3617">
+    <typeAlias alias="t3617" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.DocumentoAsociado" />
+    <insert id="insert" parameterClass="t3617">
+        INSERT INTO t3617dctosasoc (num_dev, num_id, des_docaso,
+                        ind_tipdocaso, fec_asocdoc, des_usrasoc,
+                        ind_estdocaso, fec_actdoc, des_usract)
+        VALUES (#devolucion.numeroDevolucion#, #numeroId#, #descripcion#,
+                #tipoDocumento#, #fechaAsociacion#, #usuarioAsociado#,
+                 #indicadorEstado#, #fechaActualizacion#, #usuarioActualiza#);
+    </insert>
+</sqlMap>

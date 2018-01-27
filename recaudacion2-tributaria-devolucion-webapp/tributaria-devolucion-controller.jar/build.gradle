@@ -1,0 +1,12 @@
+apply plugin: "jarConventions"
+[ compileJava, compileTestJava ]*.options*.encoding = 'UTF-8'
+
+dependenciesAndVersions {
+	useGlobalFiles()
+}
+
+dependencies{
+	compile group: 'procesos.recaudacion2.tributaria.devolucion.recaudacion2-tributaria-devolucion-sharedlib', name: 'tributaria-devolucion-model', version: "$version"
+	compile group: 'procesos.recaudacion2.tributaria.devolucion.recaudacion2-tributaria-devolucion-sharedlib', name: 'tributaria-devolucion-service-ifz', version: "$version"
+	compile group: 'procesos.recaudacion2.tributaria.devolucion.recaudacion2-tributaria-devolucion-sharedlib', name: 'tributaria-devolucion-dao-ifz', version: "$version"
+}

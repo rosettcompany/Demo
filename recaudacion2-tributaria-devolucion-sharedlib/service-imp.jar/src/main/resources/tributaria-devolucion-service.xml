@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!--<import resource="classpath:servicio-registro-model-data.xml"/>-->
+	<util:properties id="propiedades" location="classpath:propiedades.properties" />
+
+	<!-- USO DE TEXNOLOGIA GENERADOR
+	<bean id="clienteGeneradorPDFService" name="clienteGeneradorPDFService" class="org.springframework.remoting.jaxrpc.JaxRpcPortProxyFactoryBean"
+		autowire="byName">
+		<property name="serviceInterface" value="pe.gob.sunat.recaudacion2.tributaria.devolucion.service.ClienteGeneradorPDFService" />
+		<property name="wsdlDocumentUrl" value="http://wssunat:8080/cl-ti-iagenerador-service/GeneradorReportService?WSDL" />
+		<property name="namespaceUri" value="http://tempuri.org/" />
+		<property name="serviceName" value="GeneradorService" />
+		<property name="portName" value="GeneradorServicePort" />
+	</bean>
+	-->
+	<context:component-scan base-package="pe.gob.sunat.recaudacion2.tributaria.devolucion.utils" />
+	<context:component-scan base-package="pe.gob.sunat.recaudacion2.tributaria.devolucion.service" />
+	
+	<tx:annotation-driven transaction-manager="txtributaria.devolucion" proxy-target-class="true" />
+	<bean id="txtributaria.devolucion" class="org.springframework.transaction.jta.WebLogicJtaTransactionManager"  />
+
+    <!-- Service Locator de Spring -->
+    <bean id="proceso.fabricaDeServicios" name="proceso.fabricaDeServiciosOrquestador" class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean" autowire="byName">
+        <property name="serviceLocatorInterface" value="pe.gob.sunat.framework.spring.util.factory.FabricaDeServicios"/>
+    </bean>
+    
+    <!--  -->
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="SERVER4"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+    <bean id="defaultInternetAddress" class="javax.mail.internet.InternetAddress">
+        <property name="address" value="webmaster@sunat.gob.pe"/>
+        <property name="personal" value="SUNAT"/>
+    </bean>
+</beans>

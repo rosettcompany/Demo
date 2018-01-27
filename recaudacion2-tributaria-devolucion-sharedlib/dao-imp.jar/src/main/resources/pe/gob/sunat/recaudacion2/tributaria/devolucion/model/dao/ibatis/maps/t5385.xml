@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="t5385">
+	<typeAlias alias="t5385CasPrimera" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.CasillasPrimera" />
+	<typeAlias alias="t5847CTLDECL" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.ControlDeclaracion" />
+	<resultMap id="resultMapt5385CasPrimera" class="t5385CasPrimera">
+		<result property="numeroSecuencia" column="num_sec" />
+		<result property="casilla159" column="cas_159" />
+		<result property="casilla160" column="cas_160" />
+	</resultMap>
+	<select id="findByControlDeclaracion" parameterClass="t5847CTLDECL" resultMap="resultMapt5385CasPrimera" >
+		SELECT num_sec,
+		       cas_159, 
+		       cas_160
+		  FROM t5385casprimera
+		 WHERE num_sec = #numeroSecuencia#
+	</select>
+</sqlMap>

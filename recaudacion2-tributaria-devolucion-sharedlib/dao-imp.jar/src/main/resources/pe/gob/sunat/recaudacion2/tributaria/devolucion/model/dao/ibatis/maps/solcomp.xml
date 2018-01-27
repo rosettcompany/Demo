@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="solcomp">
+    <typeAlias alias="tsolcomp" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.Formulario1648" />
+    <resultMap id="resultMapsolcomp" class="tsolcomp">
+        <result property="codigoFormulario"   column="cod_for" />
+        <result property="numeroOrden"        column="nro_orden" />
+        <result property="numruc"             column="num_ruc" />
+        <result property="fecsol"             column="fec_sol" />
+        <result property="indoricom"          column="ind_ori_com" />
+        <result property="indconcom"          column="ind_con_com" />
+        <result property="perdoc"             column="per_doc" />
+        <result property="semdoc"             column="sem_doc" />
+        <result property="codtri"             column="cod_tri" />
+        <result property="codforori"          column="cod_for_ori" />
+        <result property="numdocori"          column="num_doc_ori" />
+        <result property="numrucori"          column="num_ruc_ori" />
+        <result property="mtosolcom"          column="mto_sol_com" />
+        <result property="mtocom"             column="mto_com" />
+        <result property="cod_fordes"         column="cod_for_des" />
+        <result property="numdocdes"          column="num_doc_des" />
+        <result property="numrucdes"          column="num_ruc_des" />
+        <result property="codtipdoc"          column="cod_tip_doc" />
+        <result property="numcuota"           column="num_cuota" />
+        <result property="codtrides"          column="cod_tri_des" />
+        <result property="codtriaso"          column="cod_tri_aso" />
+        <result property="pertrides"          column="per_tri_des" />
+        <result property="semdocdes"          column="sem_doc_des" />
+        <result property="indestsol"          column="ind_est_sol" />
+        <result property="codetasol"          column="cod_eta_sol" />
+        <result property="indtipver"          column="ind_tip_ver" />
+        <result property="coderrsol"          column="cod_err_sol" />
+        <result property="indresver"          column="ind_res_ver" />
+        <result property="fecver"             column="fec_ver" />
+        <result property="codregver"          column="cod_reg_ver" />
+        <result property="coddep"             column="cod_dep" />
+        <result property="coddepori"          column="cod_dep_ori" />
+    </resultMap>
+    <select id="buscarPorRucTribPerFormDocEta" parameterClass="java.util.HashMap" resultMap="resultMapsolcomp" >
+        SELECT  cod_for,
+                nro_orden,
+                num_ruc,
+                fec_sol,
+                ind_ori_com,
+                ind_con_com,
+                per_doc,
+                sem_doc,
+                cod_tri,
+                cod_for_ori,
+                num_doc_ori,
+                num_ruc_ori,
+                mto_sol_com,
+                mto_com,
+                cod_for_des,
+                num_doc_des,
+                num_ruc_des,
+                cod_tip_doc,
+                num_cuota,
+                cod_tri_des,
+                cod_tri_aso,
+                per_tri_des,
+                sem_doc_des,
+                ind_est_sol,
+                cod_eta_sol,
+                ind_tip_ver,
+                cod_err_sol,
+                ind_res_ver,
+                fec_ver,
+                cod_reg_ver,
+                cod_dep,
+                cod_dep_ori
+        FROM   sol_comp
+        WHERE  num_ruc = #numruc#
+        AND    cod_tri = #cod_tri# 
+        AND    per_doc = #per_doc#
+        <isNotNull property="codforori">
+        AND    cod_for_ori = #codforori#
+        AND    num_doc_ori = #numdocori#
+        </isNotNull>
+        AND    ind_ori_com = '2'
+        AND    cod_eta_sol in  
+        <iterate property="codetasol"  open="(" close=")" conjunction=",">
+        #codetasol[]#
+        </iterate>
+
+    </select>
+</sqlMap>

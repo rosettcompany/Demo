@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="t5386">
+	<typeAlias alias="t5386CasSegunda" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.CasillasSegunda" />
+	<typeAlias alias="t5847CTLDECL" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.ControlDeclaracion" />
+	<resultMap id="resultMapt5386CasSegunda" class="t5386CasSegunda">
+		<result property="numeroSecuencia" column="num_sec" />
+		<result property="casilla361" column="cas_361" />
+		<result property="casilla360" column="cas_360" />
+	</resultMap>
+	<select id="findByControlDeclaracion" parameterClass="t5847CTLDECL" resultMap="resultMapt5386CasSegunda" >
+		SELECT num_sec,
+		       cas_360, 
+		       cas_361
+		  FROM T5386CASSEGUNDA
+		 WHERE num_sec = #numeroSecuencia#
+	</select>
+</sqlMap>

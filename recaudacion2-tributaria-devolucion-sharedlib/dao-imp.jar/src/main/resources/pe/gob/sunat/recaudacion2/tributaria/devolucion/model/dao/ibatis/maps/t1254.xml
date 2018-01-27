@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="t1254">
+    <typeAlias alias="t1254docab " type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.Formulario1693" />
+    <resultMap id="resultMapdocab" class="t1254docab ">
+        <result property="numeroCorrelativo"  column="cnumcorr" />
+    </resultMap>
+    <select id="buscarPorRucPerTribEst" parameterClass="java.util.HashMap" resultMap="resultMapdocab" >
+        SELECT cab.num_correlativo cnumcorr
+        FROM t1254docab cab, t1256dodet det, t1255veredicto ver
+        WHERE cab.num_correlativo=det.num_correlativo
+        AND cab.num_correlativo=ver.num_correlativo
+        AND ver.ind_activo='1'
+        AND cab.num_ruc = #numruc#
+        AND ( (det.cod_casilla = '007' AND det.val_debedecir = #perfor#) 
+         OR   (det.cod_casilla = '400' AND det.val_debedecir = #codtrib#) )
+        AND ver.cod_estado in  
+        <iterate property="estados"  open="(" close=")" conjunction=",">
+        #estados[]#
+        </iterate>
+    </select>
+
+    <select id="findByCodigoForm" parameterClass="java.util.HashMap" resultMap="resultMapdocab" >
+        select cab.num_correlativo cnumcorr
+  from t1254docab cab,
+       t1255veredicto ver
+where cab.num_correlativo=ver.num_correlativo
+  and cod_formul = #codigoFormulario# and num_nabono_aso= #numeroAbonoAsociado#
+  and cod_formul_aso = #codigoFormularioAsociado# and num_orden_aso = #numeroOrdenAsociado#
+  and ver.ind_activo='1'
+  AND ver.cod_estado in  
+        <iterate property="estados"  open="(" close=")" conjunction=",">
+        #estados[]#
+        </iterate>
+    </select>
+</sqlMap>

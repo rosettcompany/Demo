@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    id="WebApp_ID" version="2.5">
+
+    <display-name>itdevolucion-registro</display-name>
+    <context-param>
+        <param-name>locatorFactorySelector</param-name>
+        <param-value>classpath:recaudacion2-tributaria-beanRefContext.xml</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>parentContextKey</param-name>
+        <param-value>recaudacion2-tributaria-devolucion.ear.context</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/devolucion-servlet.xml
+            /WEB-INF/devolucion-security.xml
+        </param-value>
+    </context-param>
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>requestContextFilter</filter-name>
+        <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>requestContextFilter</filter-name>
+        <url-pattern>/*.htm</url-pattern>
+    </filter-mapping>
+   
+    <!-- INICIO INTEGRACIÓN TIP_INVOCA=1 CON SOL -->
+    <filter>
+        <filter-name>AutenticaFilter</filter-name>
+        <filter-class>pe.gob.sunat.tecnologia.menu.filter.AutenticaFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AutenticaFilter</filter-name>
+        <servlet-name>devolucion</servlet-name>
+    </filter-mapping>
+    <servlet>
+      <servlet-name>errorPage</servlet-name>
+      <jsp-file>/WEB-INF/jsp/PagMenuE.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>errorPage</servlet-name>
+        <url-pattern>/PagMenuE.jsp</url-pattern>
+    </servlet-mapping>
+    <!-- FIN INTEGRACIÓN TIP_INVOCA=1 CON SOL -->
+    
+    <servlet>
+        <servlet-name>devolucion</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>devolucion</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+ 
+    <resource-ref>
+        <description><![CDATA[datasource a la base de datos BDSEQ Usado por la API ARCHBIN]]></description>
+        <res-ref-name>jdbc/dcbdseq</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+    <resource-ref>
+        <description><![CDATA[datasource a la base de datos RFISCA Usado por la API ARCHBIN]]></description>
+        <res-ref-name>jdbc/dxrfisca</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref> 
+</web-app>

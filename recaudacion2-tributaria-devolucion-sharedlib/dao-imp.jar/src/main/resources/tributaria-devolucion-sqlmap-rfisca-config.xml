@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true" useStatementNamespaces="true" maxSessions="64" maxTransactions="8" maxRequests="128"/>
+	
+	<!-- <typeHandler callback="pe.gob.sunat.framework.spring.util.FechaTypeHandler" javaType="pe.gob.sunat.framework.spring.util.date.FechaBean" /> -->
+	<typeHandler callback="pe.gob.sunat.recaudacion2.tributaria.devolucion.utils.dao.NameValuePairTypeHandler" javaType="pe.gob.sunat.recaudacion2.tributaria.devolucion.bean.NameValuePair" />
+	<typeHandler callback="pe.gob.sunat.recaudacion2.tributaria.devolucion.utils.dao.StringTypeHandler" javaType="java.lang.String" />
+	
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/devoluciones.xml"/>
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/t8001.xml"/>
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/casdev.xml"/>
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/respetadev.xml"/>
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/t3617.xml"/>
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/corrent.xml"/>
+	<sqlMap resource="pe/gob/sunat/recaudacion2/tributaria/devolucion/model/dao/ibatis/maps/paramlocal.xml"/>
+</sqlMapConfig>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd ">
+	
+	<import resource="tributaria-devolucion-cacheparam.xml"/>
+	<!-- ROUTING DATA SOURCE RSIRAT -->
+	<import resource="routing-datasource-data.xml"/>
+	<jee:jndi-lookup id="dcrecauda0j" jndi-name="jdbc/dcrecauda0j" resource-ref="true" cache="true" lookup-on-startup="false" proxy-interface="javax.sql.DataSource" />
+	<jee:jndi-lookup id="dgsqs" jndi-name="jdbc/dgsqs" resource-ref="true" cache="false"></jee:jndi-lookup>
+	<jee:jndi-lookup id="dcrecauda" jndi-name="jdbc/dcrecauda" resource-ref="true" cache="true"></jee:jndi-lookup>
+	<jee:jndi-lookup id="dcfvirtual" jndi-name="jdbc/dcfvirtual" resource-ref="true" cache="true"></jee:jndi-lookup>
+	<jee:jndi-lookup id="dcrfisca" jndi-name="jdbc/dcrfisca" resource-ref="true" cache="true"></jee:jndi-lookup>
+	<jee:jndi-lookup id="dgrfisca" jndi-name="jdbc/dgrfisca" resource-ref="true" cache="true"></jee:jndi-lookup>
+	<jee:jndi-lookup id="dxrfisca" jndi-name="jdbc/dxrfisca" resource-ref="true" cache="true"></jee:jndi-lookup>
+	<jee:jndi-lookup id="dcmodificadj" jndi-name="jdbc/dcmodificadj" resource-ref="true" cache="true"></jee:jndi-lookup>
+		
+	<bean id="sqlMapPDTInternetDAO" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean" autowire="byName">
+		<property name="configLocation" value="tributaria-devolucion-sqlmap-pdtinternet-config.xml"/>
+		<property name="dataSource" ref="dcfvirtual" />
+	</bean>
+	<bean id="sqlMapRfiscaDAO" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean" autowire="byName">
+		<property name="configLocation" value="tributaria-devolucion-sqlmap-rfisca-config.xml"/>
+		<property name="dataSource" ref="rfiscaRoutingDataSource" />
+	</bean>
+	<bean id="sqlMapModificaDJDAO" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean" autowire="byName">
+		<property name="configLocation" value="tributaria-devolucion-sqlmap-modificadj-config.xml"/>
+		<property name="dataSource" ref="dcmodificadj" />
+	</bean>	
+	<bean id="sqlMapRecaudaParamDS" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:recauda-sql-map-config.xml"/>
+		<property name="dataSource" ref="dcrecauda" />
+	</bean>
+	<bean id="sqlMapRecaudaDAO" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="tributaria-devolucion-sqlmap-recauda-config.xml"/>
+	<property name="dataSource" ref="dcrecauda" />
+	</bean>
+	<bean id="sqlMapRSiratDAO" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean" autowire="byName">
+		<property name="configLocation" value="tributaria-devolucion-sqlmap-rsirat-config.xml"/>
+		<property name="dataSource" ref="rsiratRoutingDataSource" />
+	</bean>
+	<bean id="sqlMapRecauda0JDAO" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="tributaria-devolucion-sqlmap-recauda0j-config.xml"/>
+		<property name="dataSource" ref="dcrecauda0j" />
+	</bean>
+
+	<context:component-scan base-package="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.dao.ibatis" />
+
+	<!-- CONFIGURACIÓN  sequenceDAO -->	
+	<jee:jndi-lookup id="Framework.bdseqDS" jndi-name="jdbc/dcbdseq" resource-ref="true" cache="true" />
+	<bean id="Framework.sqlMapClient1" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:/framework-sql-map-config-bdseq.xml"/>
+		<property name="dataSource" ref="Framework.bdseqDS" />
+	</bean>
+	<bean id="Framework.sequenceDef" name="sequenceDAO" class="pe.gob.sunat.framework.spring.util.dao.ibatis.SqlMapSequenceDAO" autowire="byName">
+		<property name="sqlMapClient" ref="Framework.sqlMapClient1"/>
+	</bean>
+
+	<bean id="Seguridad.sqlMapClient2" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:/sql-map-config-recauda-tecnologia-seguridad-service.xml"/>
+		<property name="dataSource" ref="dcrecauda0j" />
+	</bean>
+	<bean id="Seguridad.ddpDef" class="pe.gob.sunat.servicio.registro.model.dao.ibatis.SqlMapDdpDAO">
+		<property name="sqlMapClient" ref="Seguridad.sqlMapClient2"/>
+	</bean>
+	<bean class="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.dao.ibatis.SqlMapDdsDAO">
+		<property name="sqlMapClient" ref="sqlMapRecauda0JDAO"/>
+	</bean>
+</beans>

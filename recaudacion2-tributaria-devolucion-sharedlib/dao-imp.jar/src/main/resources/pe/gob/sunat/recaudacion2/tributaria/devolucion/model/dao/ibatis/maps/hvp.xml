@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd"> 
+<sqlMap namespace="hvp">
+    <typeAlias alias="thvp" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.Hvp" />
+    <resultMap id="resultMaphvp" class="thvp">
+        <result property="numeroRuc"        column="hvp_numruc" />
+        <result property="codigoTributario" column="hvp_codtri" />
+        <result property="fechaVigencia"    column="hvp_fecvig" />
+        <result property="fechaBaja"    column="hvp_fecbaj" />
+    </resultMap>
+    <select id="findByRucTributos" parameterClass="java.util.HashMap" resultMap="resultMaphvp" >
+        SELECT hvp_numruc,
+               hvp_codtri,
+               hvp_fecvig,
+               hvp_fecbaj
+        FROM   hvp
+        WHERE  hvp_numruc = #numruc#
+        AND    hvp_codtri in  
+        <iterate property="codtri"  open="(" close=")" conjunction=",">
+        #codtri[]#
+        </iterate>        
+    </select>
+</sqlMap>

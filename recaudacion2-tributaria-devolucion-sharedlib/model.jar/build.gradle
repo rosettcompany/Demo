@@ -1,0 +1,6 @@
+apply plugin: "jarConventions"
+[ compileJava, compileTestJava ]*.options*.encoding = 'UTF-8'
+
+dependenciesAndVersions {
+	useGlobalFiles()
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="t03">
+    <typeAlias alias="t03DjCab" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.DeclaracionDeterminativa" />
+    <resultMap id="resultMapt03DjCab" class="t03DjCab">
+        <result property="nabono" column="t03nabono" />
+        <result property="codigoFormulario" column="t03formulario" />
+    </resultMap>
+    <select id="findByRucPerFor" parameterClass="java.util.HashMap" resultMap="resultMapt03DjCab" >
+        SELECT t03nabono, t03formulario
+        FROM t03djcab
+        WHERE t03lltt_ruc = #ruc#
+        AND t03periodo = #periodo#
+        AND t03formulario in  
+        <iterate property="codfor"  open="(" close=")" conjunction=",">
+        #codfor[]#
+        </iterate>
+    </select>
+</sqlMap>

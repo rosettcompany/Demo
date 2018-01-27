@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="devoluciones">
+	<typeAlias alias="Devolucion" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.Devolucion" />
+	<resultMap id="resultMapDevolucion" class="Devolucion">
+		<result property="numeroDevolucion" column="num_dev" />
+		<result property="tipoSolicitud.value" column="cod_tip_sol" />
+		<result property="tributo.value" column="cod_tri" />
+		<result property="periodoDocumento" column="per_doc" />
+		<result property="montoSolicitado" column="mto_solicitado" />
+		<result property="montoDevolver" column="mto_devolver" />
+		<result property="numeroDocumento" column="num_doc" />
+		<result property="codigoFormulario" column="cod_for" />
+		<result property="ruc" column="num_ruc" />
+		<result property="fechaDocumento" column="fec_doc" />
+		<result property="formularioAsociado.value" column="cod_for_aso" />
+		<result property="numeroDocumentoAsociadio" column="num_doc_aso" />
+		<result property="indicadorEstado" column="ind_est_dev" />
+		<result property="indicadorEtapa" column="ind_eta_dev" />
+		<result property="indicadorResultado" column="ind_res_dev" />
+	</resultMap>
+	<select id="findByDevolucion" parameterClass="Devolucion" resultMap="resultMapDevolucion" >
+		SELECT num_dev,
+				cod_tip_sol,
+				ind_res_dev,
+				cod_tri,
+				per_doc,
+				ind_for_dev,
+				ind_eta_dev,
+				cod_for_aso,
+				cod_dep,
+				mto_solicitado,
+				mto_devolver,
+				fec_doc,
+				num_doc,
+				cod_for,
+				cod_for_aso,
+				num_doc_aso,
+				num_ruc,
+				ind_est_dev
+		FROM devoluciones
+		WHERE  num_ruc = #ruc#
+		AND cod_tri = #tributo.value#
+		AND per_doc = #periodoDocumento#
+		AND NOT ind_eta_dev = 'Z'
+		</select>
+	
+	<insert id="insert" parameterClass="Devolucion">
+        INSERT INTO devoluciones (num_dev, cod_dep, num_lot, num_cor, cod_for, num_doc, num_ruc, fec_doc, cod_tri, per_doc, cod_tip_sol, cod_tip_smod, cod_for_aso, num_doc_aso, ind_for_dev, ind_tip_gar, mto_gar, cod_area_eva, ind_area_ope, flg_cta_act, fec_ri, ind_res_dev, cod_dep_pres, fec_ini_int, fec_fin_int, mto_solicitado, mto_reconocido, mto_interes, mto_devolver, mto_compensado, mto_comp_aud, mto_retenido, ind_est_dev, ind_eta_dev, fec_imp_dov, cod_ente, num_ciclo, fec_doc_aso) 
+        values (#numeroDevolucion#,#codigoDependencia#,#numeroLote#,#numeroCorrelativo#,#codigoFormulario#,#numeroDocumento#,#ruc#,#fechaDocumento#,#tributo#,#periodoDocumento#,#tipoSolicitud#,#codigoTipoSmod#,#formularioAsociado#,#numeroDocumentoAsociadio#,#indicadorFormaDevolucion#,#indicadorTipoGarantia#,#montoGarantia#,#codigoAreaEvaluadora#,#indicadorAreaOperativa#,#flagCuentaActiva#,#fechaResolucionIntendencia#,#indicadorResultado#,#codigoDependenciaPresentacion#,#fechaInicioCalculoInteres#,#fechaFinCalculoInteres#,#montoSolicitado#,#montoReconocido#,#montoInteres#,#montoDevolver#,#montoCompensado#,#montoCompensadoAuditoria#,#montoRetenido#,#indicadorEstado#,#indicadorEtapa#,#fechaProyeccionEmision#,#codigoEnte#,#numeroCiclo#,#fechaDocumentoAsociado# )
+    </insert>
+    
+    
+    
+</sqlMap>

@@ -1,0 +1,7 @@
+include 'model.jar', 'dao-ifz.jar', 'dao-imp.jar', 'slb.ear', 'service-ifz.jar', 'service-imp.jar'
+project(':service-imp.jar').name='tributaria-devolucion-service-imp'
+project(':service-ifz.jar').name='tributaria-devolucion-service-ifz'
+project(':model.jar').name='tributaria-devolucion-model'
+project(':dao-imp.jar').name='tributaria-devolucion-dao-imp'
+project(':dao-ifz.jar').name='tributaria-devolucion-dao-ifz'
+project(':slb.ear').name='recaudacion2-tributaria-devolucion-sharedlib.ear'

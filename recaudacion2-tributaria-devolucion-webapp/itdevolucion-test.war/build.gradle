@@ -1,0 +1,10 @@
+apply plugin: 'warConventions'
+apply plugin: 'eclipse'
+apply plugin: 'java'
+
+war{
+    webInf{
+        from 'src/main/resources'
+    }
+    classpath = configurations.runtime
+}

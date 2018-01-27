@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="tcorrent">
+    <resultMap id="procedureMap" class="java.util.HashMap">
+        <result property="ente" columnIndex="1"/>
+        <result property="indicador" columnIndex="2"/>
+    </resultMap>
+    <select id="obtenerCorrelativo" parameterClass="java.util.HashMap"  resultClass="java.lang.Integer" >
+        select num_cor
+          from cor_ent where cod_dep = #dependencia#
+           and cod_doc = #documento#
+    </select>
+    <update id="update" parameterClass="java.util.HashMap">
+      UPDATE cor_ent
+      SET    num_cor = #correlativo#
+      WHERE cod_dep = #dependencia#
+           and cod_doc = #documento#
+   </update>
+   
+    <select id="obtenerEnte" parameterClass="java.util.HashMap"  resultMap="procedureMap" >
+        EXECUTE PROCEDURE eds04_cta_ente( #tipoSolicitud#, #fecha#, #tributo# ) 
+    </select>
+</sqlMap>

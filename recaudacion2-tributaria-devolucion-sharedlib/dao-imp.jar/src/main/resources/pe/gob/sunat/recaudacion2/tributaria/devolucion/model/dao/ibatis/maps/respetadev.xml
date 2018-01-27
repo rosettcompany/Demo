@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap  PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="trespetadev">
+    <typeAlias alias="respEtaDev" type="pe.gob.sunat.recaudacion2.tributaria.devolucion.model.ResponsableEtapa" />
+    <insert id="insert" parameterClass="respEtaDev">
+        INSERT INTO resp_eta_dev (num_dev, num_ciclo, ind_etapa, cod_reg_res, fec_etapa) 
+        values (#devolucion.numeroDevolucion#,#numeroCiclo#,#indicadorEtapa#,#codigoRegistroResponsable#,#fechaEtapa# )
+    </insert>
+</sqlMap>
+
+   

@@ -1,0 +1,11 @@
+apply plugin: "jarConventions"
+[ compileJava, compileTestJava ]*.options*.encoding = 'UTF-8'
+
+dependenciesAndVersions {
+	useGlobalFiles()
+}
+
+dependencies {
+    compile( group: 'procesos.tecnologia.framework2.tecnologia-framework2-sharedlib' , name: 'framework-util', version: '1.6')
+	compile project(':tributaria-devolucion-model')
+}

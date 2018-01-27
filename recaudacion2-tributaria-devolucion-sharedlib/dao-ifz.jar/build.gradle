@@ -1,0 +1,11 @@
+apply plugin: "jarConventions"
+[ compileJava, compileTestJava ]*.options*.encoding = 'UTF-8'
+
+dependenciesAndVersions {
+	useGlobalFiles()
+}
+
+dependencies {
+	compile project(':tributaria-devolucion-model')
+}
+

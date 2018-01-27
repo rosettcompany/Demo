@@ -1,0 +1,13 @@
+apply plugin: "jarConventions"
+[ compileJava, compileTestJava ]*.options*.encoding = 'UTF-8'
+
+dependenciesAndVersions {
+	useGlobalFiles()
+}
+
+dependencies {
+	compile project(':tributaria-devolucion-model')
+	compile project(':tributaria-devolucion-dao-ifz')
+	compile project(':tributaria-devolucion-dao-imp')
+	compile project(':tributaria-devolucion-service-ifz')
+}

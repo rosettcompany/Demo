@@ -1,0 +1,6 @@
+include 'tributaria-devolucion-controller.jar', 'recaudacion2-tributaria-devolucion.ear','itdevolucion-test.war', 'itdevolucion-registro.war' //INCWAR1
+project(':tributaria-devolucion-controller.jar').name='tributaria-devolucion-controller'
+project(':recaudacion2-tributaria-devolucion.ear').name='recaudacion2-tributaria-devolucion.ear'
+project(':itdevolucion-test.war').name='itdevolucion-test'
+project(':itdevolucion-registro.war').name='itdevolucion-registro'
+//PRO_WAR

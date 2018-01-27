@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/jee
+						http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+<!-- 	RSIRAT  -->
+	<import resource="rsirat-data.xml"/>
+	   <bean id="rfiscaRoutingDataSource" class="pe.gob.sunat.framework.spring.util.jdbc.datasource.lookup.RoutingDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+                <entry key="c" value-ref="dcrfisca"/>
+                <entry key="g" value-ref="dgrfisca"/>
+                <entry key="x" value-ref="dxrfisca"/>
+            </map>
+        </property>
+    </bean> 
+	<bean id="rsiratRoutingDataSource" class="pe.gob.sunat.framework.spring.util.jdbc.datasource.lookup.RoutingDataSource">
+		<property name="targetDataSources">
+            <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+				<entry key="dcrsirat0011" value-ref="dcrsirat0011"/>
+				<entry key="dcrsirat0021" value-ref="dcrsirat0021"/>
+				<entry key="dcrsirat0023" value-ref="dcrsirat0023"/>
+				<entry key="dcrsirat0051" value-ref="dcrsirat0051"/>
+				<entry key="dcrsirat0053" value-ref="dcrsirat0053"/>
+				<entry key="dcrsirat0061" value-ref="dcrsirat0061"/>
+				<entry key="dcrsirat0063" value-ref="dcrsirat0063"/>
+				<entry key="dcrsirat0071" value-ref="dcrsirat0071"/>
+				<entry key="dcrsirat0073" value-ref="dcrsirat0073"/>
+				<entry key="dcrsirat0081" value-ref="dcrsirat0081"/>
+				<entry key="dcrsirat0083" value-ref="dcrsirat0083"/>
+				<entry key="dcrsirat0091" value-ref="dcrsirat0091"/>
+				<entry key="dcrsirat0093" value-ref="dcrsirat0093"/>
+				<entry key="dcrsirat0101" value-ref="dcrsirat0101"/>
+				<entry key="dcrsirat0103" value-ref="dcrsirat0103"/>
+				<entry key="dcrsirat0111" value-ref="dcrsirat0111"/>
+				<entry key="dcrsirat0113" value-ref="dcrsirat0113"/>
+				<entry key="dcrsirat0121" value-ref="dcrsirat0121"/>
+				<entry key="dcrsirat0123" value-ref="dcrsirat0123"/>
+				<entry key="dcrsirat0131" value-ref="dcrsirat0131"/>
+				<entry key="dcrsirat0133" value-ref="dcrsirat0133"/>
+				<entry key="dcrsirat0141" value-ref="dcrsirat0141"/>
+				<entry key="dcrsirat0143" value-ref="dcrsirat0143"/>
+				<entry key="dcrsirat0151" value-ref="dcrsirat0151"/>
+				<entry key="dcrsirat0153" value-ref="dcrsirat0153"/>
+				<entry key="dcrsirat0161" value-ref="dcrsirat0161"/>
+				<entry key="dcrsirat0163" value-ref="dcrsirat0163"/>
+				<entry key="dcrsirat0171" value-ref="dcrsirat0171"/>
+				<entry key="dcrsirat0173" value-ref="dcrsirat0173"/>
+				<entry key="dcrsirat0181" value-ref="dcrsirat0181"/>
+				<entry key="dcrsirat0183" value-ref="dcrsirat0183"/>
+				<entry key="dcrsirat0191" value-ref="dcrsirat0191"/>
+				<entry key="dcrsirat0193" value-ref="dcrsirat0193"/>
+				<entry key="dcrsirat0211" value-ref="dcrsirat0211"/>
+				<entry key="dcrsirat0213" value-ref="dcrsirat0213"/>
+				<entry key="dcrsirat0223" value-ref="dcrsirat0223"/>
+				<entry key="dcrsirat0251" value-ref="dcrsirat0251"/>
+				<entry key="dcrsirat0253" value-ref="dcrsirat0253"/>
+				<entry key="dcrsirat0231" value-ref="dcrsirat0231"/>
+				<entry key="dcrsirat0233" value-ref="dcrsirat0233"/>
+				<entry key="dcrsirat0241" value-ref="dcrsirat0241"/>
+				<entry key="dcrsirat0243" value-ref="dcrsirat0243"/>
+				<entry key="dcrsirat0271" value-ref="dcrsirat0271"/>
+				<entry key="dcrsirat0273" value-ref="dcrsirat0273"/>
+				                        
+				<entry key="dgrsirat0011" value-ref="dgrsirat0011"/>
+				<entry key="dgrsirat0021" value-ref="dgrsirat0021"/>
+				<entry key="dgrsirat0023" value-ref="dgrsirat0023"/>
+				<entry key="dgrsirat0051" value-ref="dgrsirat0051"/>
+				<entry key="dgrsirat0053" value-ref="dgrsirat0053"/>
+				<entry key="dgrsirat0061" value-ref="dgrsirat0061"/>
+				<entry key="dgrsirat0063" value-ref="dgrsirat0063"/>
+				<entry key="dgrsirat0071" value-ref="dgrsirat0071"/>
+				<entry key="dgrsirat0073" value-ref="dgrsirat0073"/>
+				<entry key="dgrsirat0081" value-ref="dgrsirat0081"/>
+				<entry key="dgrsirat0083" value-ref="dgrsirat0083"/>
+				<entry key="dgrsirat0091" value-ref="dgrsirat0091"/>
+				<entry key="dgrsirat0093" value-ref="dgrsirat0093"/>
+				<entry key="dgrsirat0101" value-ref="dgrsirat0101"/>
+				<entry key="dgrsirat0103" value-ref="dgrsirat0103"/>
+				<entry key="dgrsirat0111" value-ref="dgrsirat0111"/>
+				<entry key="dgrsirat0113" value-ref="dgrsirat0113"/>
+				<entry key="dgrsirat0121" value-ref="dgrsirat0121"/>
+				<entry key="dgrsirat0123" value-ref="dgrsirat0123"/>
+				<entry key="dgrsirat0131" value-ref="dgrsirat0131"/>
+				<entry key="dgrsirat0133" value-ref="dgrsirat0133"/>
+				<entry key="dgrsirat0141" value-ref="dgrsirat0141"/>
+				<entry key="dgrsirat0143" value-ref="dgrsirat0143"/>
+				<entry key="dgrsirat0151" value-ref="dgrsirat0151"/>
+				<entry key="dgrsirat0153" value-ref="dgrsirat0153"/>
+				<entry key="dgrsirat0161" value-ref="dgrsirat0161"/>
+				<entry key="dgrsirat0163" value-ref="dgrsirat0163"/>
+				<entry key="dgrsirat0171" value-ref="dgrsirat0171"/>
+				<entry key="dgrsirat0173" value-ref="dgrsirat0173"/>
+				<entry key="dgrsirat0181" value-ref="dgrsirat0181"/>
+				<entry key="dgrsirat0183" value-ref="dgrsirat0183"/>
+				<entry key="dgrsirat0191" value-ref="dgrsirat0191"/>
+				<entry key="dgrsirat0193" value-ref="dgrsirat0193"/>
+				<entry key="dgrsirat0211" value-ref="dgrsirat0211"/>
+				<entry key="dgrsirat0213" value-ref="dgrsirat0213"/>
+				<entry key="dgrsirat0223" value-ref="dgrsirat0223"/>
+				<entry key="dgrsirat0251" value-ref="dgrsirat0251"/>
+				<entry key="dgrsirat0253" value-ref="dgrsirat0253"/>
+				<entry key="dgrsirat0231" value-ref="dgrsirat0231"/>
+				<entry key="dgrsirat0233" value-ref="dgrsirat0233"/>
+				<entry key="dgrsirat0241" value-ref="dgrsirat0241"/>
+				<entry key="dgrsirat0243" value-ref="dgrsirat0243"/>
+				<entry key="dgrsirat0271" value-ref="dgrsirat0271"/>
+				<entry key="dgrsirat0273" value-ref="dgrsirat0273"/>
+				                        
+				<entry key="dxrsirat0011" value-ref="dxrsirat0011"/>
+				<entry key="dxrsirat0021" value-ref="dxrsirat0021"/>
+				<entry key="dxrsirat0023" value-ref="dxrsirat0023"/>
+				<entry key="dxrsirat0051" value-ref="dxrsirat0051"/>
+				<entry key="dxrsirat0053" value-ref="dxrsirat0053"/>
+				<entry key="dxrsirat0061" value-ref="dxrsirat0061"/>
+				<entry key="dxrsirat0063" value-ref="dxrsirat0063"/>
+				<entry key="dxrsirat0071" value-ref="dxrsirat0071"/>
+				<entry key="dxrsirat0073" value-ref="dxrsirat0073"/>
+				<entry key="dxrsirat0081" value-ref="dxrsirat0081"/>
+				<entry key="dxrsirat0083" value-ref="dxrsirat0083"/>
+				<entry key="dxrsirat0091" value-ref="dxrsirat0091"/>
+				<entry key="dxrsirat0093" value-ref="dxrsirat0093"/>
+				<entry key="dxrsirat0101" value-ref="dxrsirat0101"/>
+				<entry key="dxrsirat0103" value-ref="dxrsirat0103"/>
+				<entry key="dxrsirat0111" value-ref="dxrsirat0111"/>
+				<entry key="dxrsirat0113" value-ref="dxrsirat0113"/>
+				<entry key="dxrsirat0121" value-ref="dxrsirat0121"/>
+				<entry key="dxrsirat0123" value-ref="dxrsirat0123"/>
+				<entry key="dxrsirat0131" value-ref="dxrsirat0131"/>
+				<entry key="dxrsirat0133" value-ref="dxrsirat0133"/>
+				<entry key="dxrsirat0141" value-ref="dxrsirat0141"/>
+				<entry key="dxrsirat0143" value-ref="dxrsirat0143"/>
+				<entry key="dxrsirat0151" value-ref="dxrsirat0151"/>
+				<entry key="dxrsirat0153" value-ref="dxrsirat0153"/>
+				<entry key="dxrsirat0161" value-ref="dxrsirat0161"/>
+				<entry key="dxrsirat0163" value-ref="dxrsirat0163"/>
+				<entry key="dxrsirat0171" value-ref="dxrsirat0171"/>
+				<entry key="dxrsirat0173" value-ref="dxrsirat0173"/>
+				<entry key="dxrsirat0181" value-ref="dxrsirat0181"/>
+				<entry key="dxrsirat0183" value-ref="dxrsirat0183"/>
+				<entry key="dxrsirat0191" value-ref="dxrsirat0191"/>
+				<entry key="dxrsirat0193" value-ref="dxrsirat0193"/>
+				<entry key="dxrsirat0211" value-ref="dxrsirat0211"/>
+				<entry key="dxrsirat0213" value-ref="dxrsirat0213"/>
+				<entry key="dxrsirat0223" value-ref="dxrsirat0223"/>
+				<entry key="dxrsirat0251" value-ref="dxrsirat0251"/>
+				<entry key="dxrsirat0253" value-ref="dxrsirat0253"/>
+				<entry key="dxrsirat0231" value-ref="dxrsirat0231"/>
+				<entry key="dxrsirat0233" value-ref="dxrsirat0233"/>
+				<entry key="dxrsirat0241" value-ref="dxrsirat0241"/>
+				<entry key="dxrsirat0243" value-ref="dxrsirat0243"/>
+				<entry key="dxrsirat0271" value-ref="dxrsirat0271"/>
+				<entry key="dxrsirat0273" value-ref="dxrsirat0273"/>
+            </map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dcrsirat0011"/>
+	</bean>	
+</beans>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+	<description>Taglibs usadas en aplicaciones SUNAT</description>
+	<tlib-version>1.0</tlib-version>
+	<short-name>sunat</short-name>
+	<uri>SUNATTags</uri>
+
+	<tag>
+        <description>Importa automaticamente los archivos CSS y JSCRIPT</description>
+		<name>resources</name>
+		<tag-class>pe.gob.sunat.recaudacion2.tributaria.devolucion.utils.tags.ResourcesTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>tipo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+       <description>Crea un input con una lista desplegable (BootStrap)</description>
+	   <name>EditableDropDown</name>
+	   <tag-class>pe.gob.sunat.recaudacion2.tributaria.devolucion.utils.tags.EditableDropDownTag</tag-class>
+	   <body-content>empty</body-content>
+	   <attribute>
+	       <name>path</name>
+	       <required>true</required>
+	       <rtexprvalue>true</rtexprvalue>
+	   </attribute>
+	   <attribute>
+           <name>cssClass</name>
+           <required>true</required>
+           <rtexprvalue>true</rtexprvalue>
+       </attribute>
+       <attribute>
+           <name>readonly</name>
+           <required>true</required>
+           <rtexprvalue>true</rtexprvalue>
+       </attribute>
+       <attribute>
+           <name>placeHolder</name>
+           <required>true</required>
+           <rtexprvalue>true</rtexprvalue>
+       </attribute>
+    </tag>
+</taglib>
